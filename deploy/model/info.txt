@@ -1,1 +1,3 @@
 drop the trained model.pt and vocab.pth here.
+or
+run getweights.sh
