@@ -2,5 +2,5 @@ venv
 .ipynb_checkpoints
 __pycache__
 dataset/flickr30k-dataset
-model
-trained_captioning_model.pt
+*.pt
+*.pth
