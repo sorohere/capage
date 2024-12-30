@@ -1,5 +1,3 @@
-chmod +w .
-
 wget "https://github.com/sorohere/flickr-dataset/releases/download/v0.1.0/flickr30k-dataset-part_00"
 wget "https://github.com/sorohere/flickr-dataset/releases/download/v0.1.0/flickr30k-dataset-part_01"
 wget "https://github.com/sorohere/flickr-dataset/releases/download/v0.1.0/flickr30k-dataset-part_02"
