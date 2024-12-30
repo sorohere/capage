@@ -30,7 +30,7 @@ def set_cuda():
 
         
 
-def Detensorize_image(image_tensor, mean_vector, std_vector, denormalize=True): 
+def detensorize_image(image_tensor, mean_vector, std_vector, denormalize=True): 
     
     
     """
