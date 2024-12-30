@@ -1,4 +1,5 @@
 venv
+__MACOSX
 .ipynb_checkpoints
 __pycache__
 dataset/flickr30k-dataset
