@@ -7,7 +7,7 @@ import torch.optim as optim
 from torchvision import models, transforms
 import numpy as np
 from PIL import Image
-from utils import image_transformation, set_cuda
+from construct.utils import image_transformation, set_cuda
 
 device = set_cuda()
 
