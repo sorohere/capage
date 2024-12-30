@@ -1,0 +1,1 @@
+drop the trained model.pt and vocab.pth here.
