@@ -31,8 +31,6 @@ def set_cuda():
         
 
 def detensorize_image(image_tensor, mean_vector, std_vector, denormalize=True): 
-    
-    
     """
     Converts a normalized image tensor back to a denormalized format for visualization.
 
