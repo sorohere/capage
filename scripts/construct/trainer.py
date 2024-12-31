@@ -4,7 +4,7 @@ from torch.utils.data import DataLoader
 import torch.optim as optim
 from tqdm import tqdm
 import os
-from .dataset import collate_fn
+from .dataloader import collate_fn
 
 class ModelTrainer:
     def __init__(self, model, train_dataset, val_dataset, device, 
