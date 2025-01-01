@@ -1,3 +1,5 @@
+cd dataset
+
 wget "https://github.com/sorohere/flickr-dataset/releases/download/v0.1.0/flickr30k-dataset-part_00"
 wget "https://github.com/sorohere/flickr-dataset/releases/download/v0.1.0/flickr30k-dataset-part_01"
 wget "https://github.com/sorohere/flickr-dataset/releases/download/v0.1.0/flickr30k-dataset-part_02"
@@ -9,3 +11,5 @@ rm flickr30k-dataset-part_00 flickr30k-dataset-part_01 flickr30k-dataset-part_02
 rm flickr30k-dataset.zip
 
 echo "Downloaded Flickr30k dataset successfully."
+
+rm -rf __MACOSX
