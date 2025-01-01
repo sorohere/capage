@@ -10,3 +10,6 @@ rm model.zip
 rm vocab.zip
 
 rm -rf __MACOSX
+
+cd ..
+cd ..
