@@ -9,7 +9,8 @@ unzip -q flickr30k-dataset.zip
 
 rm flickr30k-dataset-part_00 flickr30k-dataset-part_01 flickr30k-dataset-part_02
 rm flickr30k-dataset.zip
+rm -rf __MACOSX
 
 echo "Downloaded Flickr30k dataset successfully."
 
-rm -rf __MACOSX
+cd ..
