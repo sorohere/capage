@@ -17,7 +17,7 @@ vocab = torch.load("model/vocab.pth", map_location=device)
 
 # Configure Streamlit app with a dark theme and page layout
 st.set_page_config(
-    page_title="Image Captioning App",
+    page_title="capage",
     layout="centered",  # Center content for better aesthetics
     initial_sidebar_state="expanded"
 )
@@ -73,7 +73,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Display title and instructions
-st.markdown('<div class="title">🖼️ Image Captioning App</div>', unsafe_allow_html=True)
+st.markdown('<div class="title">capage: captionimage</div>', unsafe_allow_html=True)
 st.markdown('<div class="header">Upload an image and watch the captioning model work its magic!</div>', unsafe_allow_html=True)
 
 # Upload image section
@@ -92,7 +92,7 @@ if uploaded_image is not None:
     st.image(image, caption="Uploaded Image", width=480)
 
     # Button to generate captions
-    if st.button("📝 Generate Caption"):
+    if st.button("Generate Caption"):
         with st.spinner("Generating caption..."):
             # Generate caption and attention maps
             attentions, caption = model.predict(image, vocab)
@@ -116,4 +116,4 @@ if uploaded_image is not None:
 
     st.markdown('</div>', unsafe_allow_html=True)
 else:
-    st.info("👈 Upload an image to get started!")
+    st.info("Upload an image to get started!")
