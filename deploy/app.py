@@ -48,6 +48,8 @@ st.markdown("""
             font-size: 16px;
             padding: 10px 20px;
             border-radius: 8px;
+            display: block;
+            margin: 20px auto;
         }
         .stButton button:hover {
             background-color: #018786;
@@ -58,9 +60,29 @@ st.markdown("""
             flex-direction: column;
             align-items: center;
             gap: 20px;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+        .image-container {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        .image-container img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+        .textbox-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px; /* Add space below the text box */
         }
         .textbox {
-            width: 480px;
+            width: 100%;
             height: 100px;
             padding: 10px;
             border-radius: 8px;
@@ -69,12 +91,17 @@ st.markdown("""
             background-color: #1F1B24;
             color: #E0E0E0;
         }
+        /* Center the file uploader */
+        .st-emotion-cache-1v0mbdj {
+            display: flex;
+            justify-content: center;
+        }
     </style>
 """, unsafe_allow_html=True)
 
 # Display title and instructions
-st.markdown('<div class="title">capage: captionimage</div>', unsafe_allow_html=True)
-st.markdown('<div class="header">Upload an image and watch the captioning model work its magic!</div>', unsafe_allow_html=True)
+st.markdown('<div class="title">capage: imagecaption</div>', unsafe_allow_html=True)
+st.markdown('<div class="header">upload an image and watch the captioning model work its brain!</div>', unsafe_allow_html=True)
 
 # Upload image section
 uploaded_image = st.file_uploader("Choose an image...", type=["jpg", "png", "jpeg"])
@@ -83,37 +110,58 @@ if uploaded_image is not None:
     # Load and preprocess the uploaded image
     image = Image.open(uploaded_image)
     image = np.array(image)
-    image = cv2.resize(image, (480, int(480 * image.shape[0] / image.shape[1])))  # Adjust height proportionally
+    
+    # Calculate height to maintain aspect ratio with width of 480
+    aspect_ratio = image.shape[0] / image.shape[1]
+    new_height = int(480 * aspect_ratio)
+    image = cv2.resize(image, (480, new_height))
 
-    # Arrange the image and caption in a 1x2 matrix layout
+    # Wrap image in container div
     st.markdown('<div class="matrix-container">', unsafe_allow_html=True)
-
-    # Display the uploaded image
-    st.image(image, caption="Uploaded Image", width=480)
+    st.markdown('<div class="image-container">', unsafe_allow_html=True)
+    st.image(image, use_container_width=True)
+    st.markdown('</div>', unsafe_allow_html=True)
 
     # Button to generate captions
     if st.button("Generate Caption"):
         with st.spinner("Generating caption..."):
-            # Generate caption and attention maps
-            attentions, caption = model.predict(image, vocab)
-            caption_text = ' '.join(caption[1:-1])
+            try:
+                # Generate caption and attention maps
+                attentions, caption = model.predict(image, vocab)
+                caption_text = ' '.join(caption[1:-1])
 
-            # Display the generated caption in a text box
-            st.markdown(f'<textarea class="textbox" readonly>{caption_text}</textarea>', unsafe_allow_html=True)
+                # Store caption and attentions in session state
+                st.session_state.caption = caption_text
+                st.session_state.attentions = attentions
+                st.session_state.full_caption = caption
 
-            # Option to display attention maps
-            if st.checkbox("Show Attention Maps"):
-                st.write("### Attention Maps")
-                try:
-                    # Create a placeholder for attention maps
-                    attention_placeholder = st.empty()
-                    with attention_placeholder:
-                        plot_attention(image, caption, attentions, is_streamlit=True)
-                except Exception as e:
-                    st.error(f"Error displaying attention maps: {str(e)}")
-                    st.error("Attention vectors shape: " + str([att.shape for att in attentions]))
-                    st.error("Caption length: " + str(len(caption)))
+            except Exception as e:
+                st.error(f"Error generating caption: {str(e)}")
+
+    # Show caption text box if a caption is generated
+    if "caption" in st.session_state:
+        # Display the generated caption in a text box
+        st.markdown(
+            f'<div class="textbox-container"><textarea class="textbox" readonly>{st.session_state.caption}</textarea></div>',
+            unsafe_allow_html=True
+        )
+
+        # Show checkbox for attention maps
+        show_attention = st.checkbox("🔍 Show Attention Maps", value=False)
+
+        # Display attention maps based on checkbox state
+        if show_attention:
+            try:
+                # Create a placeholder for attention maps at the very end
+                attention_placeholder = st.empty()
+                fig = plot_attention(image, st.session_state.full_caption, st.session_state.attentions, is_streamlit=True)
+                attention_placeholder.pyplot(fig)
+                plt.close(fig)
+            except Exception as e:
+                st.error(f"Error displaying attention maps: {str(e)}")
 
     st.markdown('</div>', unsafe_allow_html=True)
 else:
     st.info("Upload an image to get started!")
+
+
