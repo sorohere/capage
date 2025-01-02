@@ -13,7 +13,7 @@ device = set_cuda()
 
 class Vocabulary:
     """
-    Creates a vocabulary for tokenizing captions. Only tokens with frequency greater than
+    Creates a vocabulary for tokenizing captions. only tokens with frequency greater than
     the threshold are added to the vocabulary.
     """
     def __init__(self, caption_list, freq_threshold):
