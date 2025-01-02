@@ -43,18 +43,20 @@ st.markdown("""
             margin-bottom: 20px;
         }
         .stButton button {
-            background-color: #03DAC6;
-            color: #000;
+            color: #fff; /* Change font color to white */
             font-size: 16px;
-            padding: 10px 20px;
+            font-weight: bold; /* Make font bold */
+            padding: 0px 10px;
             border-radius: 8px;
             display: block;
             margin: 20px auto;
         }
+
         .stButton button:hover {
-            background-color: #018786;
-            color: #FFF;
+            color: #FF0000; /* Change text color to red */
+            border: 2px solid #FF0000; /* Add red border */
         }
+
         .matrix-container {
             display: flex;
             flex-direction: column;
