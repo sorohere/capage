@@ -125,7 +125,7 @@ if uploaded_image is not None:
     st.markdown('</div>', unsafe_allow_html=True)
 
     # Button to generate captions
-    if st.button("Generate Caption"):
+    if st.button("generate caption"):
         with st.spinner("Generating caption..."):
             try:
                 # Generate caption and attention maps
@@ -149,7 +149,7 @@ if uploaded_image is not None:
         )
 
         # Show checkbox for attention maps
-        show_attention = st.checkbox("🔍 Show Attention Maps", value=False)
+        show_attention = st.checkbox("show attentions", value=False)
 
         # Display attention maps based on checkbox state
         if show_attention:
