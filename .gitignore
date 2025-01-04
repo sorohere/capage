@@ -4,6 +4,4 @@ __MACOSX
 .ipynb_checkpoints
 __pycache__
 dataset/flickr30k-dataset
-*.pt
-*.pth
 checkpoints
