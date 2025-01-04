@@ -12,8 +12,8 @@ from PIL import Image
 device = set_cuda()
 
 # Load the pre-trained model and vocabulary
-model = torch.load('model/model.pt', map_location=device)
-vocab = torch.load("model/vocab.pth", map_location=device)
+model = torch.load('deploy/model/model.pt', map_location=device)
+vocab = torch.load("deploy/model/vocab.pth", map_location=device)
 
 # Configure Streamlit app with a dark theme and page layout
 st.set_page_config(
