@@ -1,13 +1,13 @@
 # capage
 
-A CNN-LSTM based image captioning model trained on the Flickr30k dataset.
+A CNN-LSTM based image captioning model trained on the flickr30k dataset.
 
 ### Installation
 
 1. clone the repository: `https://github.com/sorohere/capage.git`
 2. download weights and dataset:
    - run `run.sh` script, or
-   - download manually from [flickr30k](https://github.com/sorohere/flickr-dataset)
+   - download manually from [flickr30k](https://github.com/sorohere/flickr-dataset?tab=readme-ov-file#flickr30k)
 
 3. install dependencies: `pip install -r requirement.txt`
 
