@@ -2,6 +2,8 @@
 
 A CNN-LSTM based image captioning model trained on the flickr30k dataset.
 
+https://github.com/user-attachments/assets/b9bc1263-f918-43aa-a2ac-b30e479cacfe
+
 ### Installation
 
 1. clone the repository: `https://github.com/sorohere/capage.git`
