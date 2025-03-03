@@ -5,3 +5,4 @@ __MACOSX
 __pycache__
 dataset/flickr30k-dataset
 checkpoints
+logs
